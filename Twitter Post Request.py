@@ -24,7 +24,7 @@ def augment(url, parameters):
 
     return oauth_request.to_postdata()
 
-
+#https://zzusis-utilities.wsu.edu/portal/yahoo/docs/html/OAuth/OAuthRequest.html#to_postdata
 
 
 
