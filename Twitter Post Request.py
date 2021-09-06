@@ -50,11 +50,14 @@ x = 'https://api.twitter.com/1.1/friendships/create.json'
 auth = OAuth1('qZq8egFWuRTXtinAkOl8qDSro', 'mh1TCL45zgybtXA7Sx0tRIM1sNwGbU9UZ4SQ7rJsVWG7tamD7s',
               '1427019853051871235-K7bsRXEgL4YxTUdoREPXpd558Vi6Lg', 'JP8zi5QTlYKpjRiKw2NnpPuxasFjuvYiYmDFoqV9M1shU')
 
-count = 0
-
 for id in userlist :
-    url = twurl.augment(url, {'user_id': id, 'follow': 'true'})
-    r = requests.post()
+    followerdata = twurl.augment(url, {'user_id': id, 'follow': 'true'})
+    print(followerdata)
+
+    caturl = x + "?user_id=" + str(id) + "&follow=true"
+    r = requests.post(caturl, headers=followerdata, data=dict(a=None))
+
+    print(r)
 
 
 
