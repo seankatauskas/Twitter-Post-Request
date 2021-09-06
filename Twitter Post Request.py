@@ -54,7 +54,7 @@ count = 0
 
 for id in userlist :
     url = twurl.augment(url, {'user_id': id, 'follow': 'true'})
-    r = requests.post(x, url)
+    r = requests.post()
 
 
 
