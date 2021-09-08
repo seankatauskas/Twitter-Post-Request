@@ -1,4 +1,15 @@
 ####
+#Twitter Keys
+
+def oauth():
+    return {"consumer_key": "",
+            "consumer_secret": "",
+            "token_key": "",
+            "token_secret": ""}
+
+
+
+####
 # Authorization Function
 
 
@@ -22,7 +33,7 @@ def augment(url, parameters):
                                consumer, token)
 
 
-    return oauth_request.to_postdata()
+    return oauth_request.to_header()
 
 #https://zzusis-utilities.wsu.edu/portal/yahoo/docs/html/OAuth/OAuthRequest.html#to_postdata
 
@@ -47,30 +58,20 @@ ctx.verify_mode = ssl.CERT_NONE
 
 url = 'https://api.twitter.com/1.1/friendships/create.json'
 x = 'https://api.twitter.com/1.1/friendships/create.json'
-auth = OAuth1('qZq8egFWuRTXtinAkOl8qDSro', 'mh1TCL45zgybtXA7Sx0tRIM1sNwGbU9UZ4SQ7rJsVWG7tamD7s',
-              '1427019853051871235-K7bsRXEgL4YxTUdoREPXpd558Vi6Lg', 'JP8zi5QTlYKpjRiKw2NnpPuxasFjuvYiYmDFoqV9M1shU')
 
 for id in userlist :
-    followerdata = twurl.augment(url, {'user_id': id, 'follow': 'true'})
-    print(followerdata)
+    try:
+        followerdata = twurl.augment(url, {'user_id': id, 'follow': 'true'})
+        print(followerdata)
 
-    caturl = x + "?user_id=" + str(id) + "&follow=true"
-    r = requests.post(caturl, headers=followerdata, data=dict(a=None))
+        caturl = x + "?user_id=" + str(id) + "&follow=true"
+        r = requests.post(caturl, data=dict(a=None), headers=followerdata)
 
-    print(r)
+        print(r.text)
+        print(r)
 
-
-
-
-####
-#Twitter Keys
-
-def oauth():
-    return {"consumer_key": "qZq8egFWuRTXtinAkOl8qDSro",
-            "consumer_secret": "mh1TCL45zgybtXA7Sx0tRIM1sNwGbU9UZ4SQ7rJsVWG7tamD7s",
-            "token_key": "1427019853051871235-K7bsRXEgL4YxTUdoREPXpd558Vi6Lg",
-            "token_secret": "JP8zi5QTlYKpjRiKw2NnpPuxasFjuvYiYmDFoqV9M1shU"}
-
+    except:
+        continue
 
 
 
